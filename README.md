@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with HexOcean pizza from!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application was created in React, it consists of X components
 
 ## Available Scripts
 
