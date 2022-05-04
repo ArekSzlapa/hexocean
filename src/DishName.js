@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-const DishName = () => {
-  const [dishName, setDishName] = useState("");
+const DishName = ({ dishName, setDishName }) => {
   return (
     <label htmlFor="dishName">
       <p className="type-title">Dish name:</p>

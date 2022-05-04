@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-const PreperationTimer = () => {
-  const [value, setValue] = useState("01:00:00");
-
+const PreperationTimer = ({ value, setValue }) => {
   const toHHMMSS = (secs) => {
     const secNum = parseInt(secs.toString(), 10);
     const hours = Math.floor(secNum / 3600);

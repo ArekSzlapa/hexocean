@@ -20,11 +20,11 @@ const SoupSpecifics = () => {
         required
         onChange={(e) => checkValue(e.target.value)}
         type="number"
-        name="SoupSpecifics"
+        name="SpicinessLevel"
         value={value}
         min="1"
         max="10"
-        placeholder="5"
+        placeholder="Spiciness level"
       />
     </>
   );

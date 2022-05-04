@@ -25,7 +25,7 @@ const SandwichSpecifics = () => {
         step="1"
         max="4"
         value={slices}
-        placeholder="1"
+        placeholder="Number of bread slices"
       />
     </>
   );

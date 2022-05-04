@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PizzaSpecifics from "./PizzaSpecifics";
 import SoupSpecifics from "./SoupSpecifics";
 import SandwichSpecifics from "./SandwichSpecifics";
@@ -6,9 +5,7 @@ import PreperationTime from "./PreperationTime";
 
 const DISHES = ["Pizza", "Sandwich", "Soup"];
 
-const DishType = () => {
-  const [type, setType] = useState("");
-
+const DishType = ({ type, setType, value, setValue }) => {
   return (
     <label htmlFor="type">
       <p className="type-title">Dish type:</p>
@@ -24,14 +21,16 @@ const DishType = () => {
           setType(e.target.value);
         }}
       >
-        <option />
+        <option disabled value="">
+          Select an option
+        </option>
         {DISHES.map((dish) => (
           <option key={dish} value={dish}>
             {dish}
           </option>
         ))}
       </select>
-      <PreperationTime />
+      <PreperationTime value={value} setValue={setValue} />
       {type === "Pizza" && <PizzaSpecifics />}
       {type === "Soup" && <SoupSpecifics />}
       {type === "Sandwich" && <SandwichSpecifics />}

@@ -32,8 +32,8 @@ const PizzaSpecifics = () => {
         type="number"
         name="no_of_slices"
         min="1"
-        max="8"
-        placeholder="8"
+        max="16"
+        placeholder="Number of slices"
       />
 
       <label className="type-title" htmlFor="diameter">
@@ -48,7 +48,7 @@ const PizzaSpecifics = () => {
         value={diameter}
         max="50"
         name="diameter"
-        placeholder="32"
+        placeholder="Diameter"
       />
     </>
   );
