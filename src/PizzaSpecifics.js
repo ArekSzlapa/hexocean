@@ -3,25 +3,25 @@ import { useState } from "react";
 const PizzaSpecifics = () => {
   const [slices, setSlices] = useState("");
   const [diameter, setDiameter] = useState("");
+  const [diameterMsg, setDiameterMsg] = useState("");
+  const [pizzaSlices, setPizzaSlices] = useState("");
 
   const checkValue = (el) => {
     setSlices(parseInt(el));
     if (el > 16 || el < 0) {
-      alert("The number of pizza slices should be between 1 and 16!");
-      setSlices("");
-    }
+      setPizzaSlices("The number of pizza slices should be between 1 and 16!");
+    } else setPizzaSlices("");
   };
 
   const checkDiameter = (el) => {
-    setDiameter(el.replace(",", "."));
-    if (el > 50 || (el.length > 1 && el < 32)) {
-      alert("The diameter should be between 32cm and 50cm!");
-      setDiameter("");
-    }
+    parseFloat(setDiameter(el.replace(",", ".")));
+    if (el > 50 || el < 32) {
+      setDiameterMsg("The diameter should be between 32cm and 50cm!");
+    } else setDiameterMsg("");
   };
 
   return (
-    <>
+    <div>
       <label className="type-title" htmlFor="no_of_slices">
         Number of slices:
       </label>
@@ -35,6 +35,7 @@ const PizzaSpecifics = () => {
         max="16"
         placeholder="Number of slices"
       />
+      <p className="errorMsg">{pizzaSlices}</p>
 
       <label className="type-title" htmlFor="diameter">
         Diameter:
@@ -50,7 +51,8 @@ const PizzaSpecifics = () => {
         name="diameter"
         placeholder="Diameter"
       />
-    </>
+      <p className="errorMsg">{diameterMsg}</p>
+    </div>
   );
 };
 export default PizzaSpecifics;

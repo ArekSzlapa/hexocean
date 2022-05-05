@@ -54,7 +54,7 @@ const PreperationTimer = ({ value, setValue }) => {
       <input
         onBlur={onBlur}
         onChange={onChange}
-        name="preperation"
+        name="preparation_time"
         type="text"
         value={value}
       />

@@ -8,32 +8,50 @@ const App = () => {
   const [dishName, setDishName] = useState("");
   const [type, setType] = useState("");
   const [id, setId] = useState(1);
+  const [errors, setErrors] = useState("");
 
   const handleSumbit = async (e) => {
     e.preventDefault();
+    console.log(e.target[0]);
     const dataObj = {};
     const formData = new FormData(e.currentTarget);
     for (let [key, value] of formData.entries(e)) {
-      dataObj[key] = value;
-      formData.entries(e).value = "";
+      if (
+        key === "no_of_slices" ||
+        key === "SpicinessLevel" ||
+        key === "noOfBreadSlices"
+      ) {
+        dataObj[key] = parseInt(value);
+      } else if (key === "diameter") {
+        dataObj[key] = parseFloat(value);
+      } else dataObj[key] = value;
+      // dataObj[key] = value;
+
+      // formData.entries(e).value = "";
     }
     dataObj.id = id;
     setId((id) => id + 1);
-    console.log(JSON.stringify(dataObj));
     let data = JSON.stringify(dataObj);
+    console.log(data);
     try {
       let res = await fetch("https://reqbin.com/echo/post/json", {
         method: "POST",
         body: data,
       });
+
+      if (!res.ok) {
+        const error = await res.json();
+        setErrors(error);
+        console.error("There was an error!", errors);
+      }
       if (res.status === 200) {
         setDishName("");
         setType("");
         setValue("01:00:00");
-        alert("The order was sumbited!");
+        alert("Form submited successfuly!");
       } else alert("Ooops, something went wrong!");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("There was an error!", error);
     }
   };
 

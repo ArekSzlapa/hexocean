@@ -3,7 +3,7 @@ import SoupSpecifics from "./SoupSpecifics";
 import SandwichSpecifics from "./SandwichSpecifics";
 import PreperationTime from "./PreperationTime";
 
-const DISHES = ["Pizza", "Sandwich", "Soup"];
+const DISHES = ["pizza", "sandwich", "soup"];
 
 const DishType = ({ type, setType, value, setValue }) => {
   return (
@@ -31,9 +31,9 @@ const DishType = ({ type, setType, value, setValue }) => {
         ))}
       </select>
       <PreperationTime value={value} setValue={setValue} />
-      {type === "Pizza" && <PizzaSpecifics />}
-      {type === "Soup" && <SoupSpecifics />}
-      {type === "Sandwich" && <SandwichSpecifics />}
+      {type === "pizza" && <PizzaSpecifics />}
+      {type === "soup" && <SoupSpecifics />}
+      {type === "sandwich" && <SandwichSpecifics />}
     </label>
   );
 };
