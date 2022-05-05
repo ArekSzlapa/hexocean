@@ -8,6 +8,7 @@ const App = () => {
   const [dishName, setDishName] = useState("");
   const [type, setType] = useState("");
   const [id, setId] = useState(1);
+
   const handleSumbit = async (e) => {
     e.preventDefault();
     const dataObj = {};
@@ -19,10 +20,11 @@ const App = () => {
     dataObj.id = id;
     setId((id) => id + 1);
     console.log(JSON.stringify(dataObj));
+    let data = JSON.stringify(dataObj);
     try {
-      let res = await fetch("https://httpbin.org/post", {
+      let res = await fetch("https://reqbin.com/echo/post/json", {
         method: "POST",
-        body: JSON.stringify(dataObj),
+        body: data,
       });
       if (res.status === 200) {
         setDishName("");

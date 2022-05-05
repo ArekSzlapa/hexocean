@@ -8,3 +8,5 @@ It took me 4.5h to build this application.
 I have decided to split the appliaction into eight components.
 
 Link to github project: https://github.com/ArekSzlapa/hexocean
+
+Live preview: https://arekszlapa.github.io/hexocean/
