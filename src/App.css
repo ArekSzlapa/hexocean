@@ -8,6 +8,8 @@
   padding: 20px 30px;
   border-radius: 15px;
   width: 22vw;
+  text-align: center;
+  min-width: 320px;
 }
 label {
   display: block;

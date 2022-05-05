@@ -12,7 +12,6 @@ const App = () => {
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    console.log(e.target[0]);
     const dataObj = {};
     const formData = new FormData(e.currentTarget);
     for (let [key, value] of formData.entries(e)) {
@@ -25,19 +24,18 @@ const App = () => {
       } else if (key === "diameter") {
         dataObj[key] = parseFloat(value);
       } else dataObj[key] = value;
-      // dataObj[key] = value;
-
-      // formData.entries(e).value = "";
     }
     dataObj.id = id;
     setId((id) => id + 1);
     let data = JSON.stringify(dataObj);
-    console.log(data);
     try {
-      let res = await fetch("https://reqbin.com/echo/post/json", {
-        method: "POST",
-        body: data,
-      });
+      let res = await fetch(
+        "https://frosty-wood-6558.getsandbox.com:443/dishes",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       if (!res.ok) {
         const error = await res.json();

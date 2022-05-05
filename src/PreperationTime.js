@@ -8,8 +8,7 @@ const PreperationTimer = ({ value, setValue }) => {
     return [hours, minutes, seconds]
       .map((val) => (val < 10 ? `0${val}` : val))
       .filter((val, index) => val !== "00" || index > 0)
-      .join(":")
-      .replace(/^0/, "");
+      .join(":");
   };
 
   const getSecondsFromHHMMSS = (value) => {
