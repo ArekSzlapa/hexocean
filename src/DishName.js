@@ -5,9 +5,9 @@ const DishName = ({ dishName, setDishName }) => {
         <p className="type-title">Dish name:</p>
       </label>
       <input
+        required
         id="dishName"
         name="name"
-        required
         value={dishName}
         placeholder="Dish name"
         onChange={(e) => setDishName(e.target.value)}

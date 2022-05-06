@@ -17,8 +17,8 @@ const App = () => {
     for (let [key, value] of formData.entries(e)) {
       if (
         key === "no_of_slices" ||
-        key === "SpicinessLevel" ||
-        key === "noOfBreadSlices"
+        key === "spiciness_scale" ||
+        key === "slices_of_bread"
       ) {
         dataObj[key] = parseInt(value);
       } else if (key === "diameter") {
@@ -27,29 +27,31 @@ const App = () => {
     }
     dataObj.id = id;
     setId((id) => id + 1);
-    let data = JSON.stringify(dataObj);
     try {
       let res = await fetch(
         "https://frosty-wood-6558.getsandbox.com:443/dishes",
         {
           method: "POST",
-          body: data,
+          body: JSON.stringify(dataObj),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
       if (!res.ok) {
         const error = await res.json();
         setErrors(error);
-        console.error("There was an error!", errors);
+        console.log(errors);
       }
       if (res.status === 200) {
         setDishName("");
         setType("");
         setValue("01:00:00");
         alert("Form submited successfuly!");
-      } else alert("Ooops, something went wrong!");
+      }
     } catch (error) {
-      console.error("There was an error!", error);
+      return;
     }
   };
 
@@ -57,8 +59,13 @@ const App = () => {
     <div>
       <form className="form" onSubmit={handleSumbit}>
         <h1>HexOcean FoodForm</h1>
-        <DishName dishName={dishName} setDishName={setDishName} />
+        <DishName
+          errors={errors}
+          dishName={dishName}
+          setDishName={setDishName}
+        />
         <DishType
+          errors={errors}
           type={type}
           setType={setType}
           value={value}

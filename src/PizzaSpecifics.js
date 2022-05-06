@@ -1,24 +1,8 @@
 import { useState } from "react";
 
-const PizzaSpecifics = () => {
+const PizzaSpecifics = ({ errors }) => {
   const [slices, setSlices] = useState("");
   const [diameter, setDiameter] = useState("");
-  const [diameterMsg, setDiameterMsg] = useState("");
-  const [pizzaSlices, setPizzaSlices] = useState("");
-
-  const checkValue = (el) => {
-    setSlices(parseInt(el));
-    if (el > 16 || el < 0) {
-      setPizzaSlices("The number of pizza slices should be between 1 and 16!");
-    } else setPizzaSlices("");
-  };
-
-  const checkDiameter = (el) => {
-    parseFloat(setDiameter(el.replace(",", ".")));
-    if (el > 50 || el < 32) {
-      setDiameterMsg("The diameter should be between 32cm and 50cm!");
-    } else setDiameterMsg("");
-  };
 
   return (
     <div>
@@ -26,24 +10,22 @@ const PizzaSpecifics = () => {
         Number of slices:
       </label>
       <input
-        required
         value={slices}
-        onChange={(e) => checkValue(e.target.value)}
+        onChange={(e) => setSlices(e.target.value)}
         type="number"
         name="no_of_slices"
         min="1"
         max="16"
         placeholder="Number of slices"
       />
-      <p className="errorMsg">{pizzaSlices}</p>
+      <p className="errorMsg">{errors.no_of_slices}</p>
 
       <label className="type-title" htmlFor="diameter">
         Diameter:
       </label>
       <input
-        required
         type="number"
-        onChange={(e) => checkDiameter(e.target.value)}
+        onChange={(e) => setDiameter(e.target.value)}
         step="0.1"
         min="32"
         value={diameter}
@@ -51,7 +33,7 @@ const PizzaSpecifics = () => {
         name="diameter"
         placeholder="Diameter"
       />
-      <p className="errorMsg">{diameterMsg}</p>
+      <p className="errorMsg">{errors.diameter}</p>
     </div>
   );
 };

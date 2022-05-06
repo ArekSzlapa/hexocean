@@ -1,14 +1,8 @@
 import { useState } from "react";
 
-const SoupSpecifics = () => {
+const SoupSpecifics = ({ errors }) => {
   const [value, setValue] = useState("");
-  const checkValue = (el) => {
-    setValue(parseInt(el));
-    if (el > 10 || el < 0) {
-      alert("The Spicy scale should be between 1 and 10!");
-      setValue("");
-    }
-  };
+
   return (
     <>
       <label className="type-title" htmlFor="SoupSpecifics">
@@ -17,15 +11,15 @@ const SoupSpecifics = () => {
         (1 is mild and 10 is spicy):
       </label>
       <input
-        required
-        onChange={(e) => checkValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
         type="number"
-        name="SpicinessLevel"
+        name="spiciness_scale"
         value={value}
         min="1"
         max="10"
         placeholder="Spiciness level"
       />
+      <p className="errorMsg">{errors.spiciness_scale}</p>
     </>
   );
 };

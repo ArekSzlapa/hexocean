@@ -1,15 +1,7 @@
 import { useState } from "react";
 
-const SandwichSpecifics = () => {
+const SandwichSpecifics = ({ errors }) => {
   const [slices, setSlices] = useState("");
-
-  const checkValue = (el) => {
-    setSlices(parseInt(el));
-    if (el > 4 || el < 0) {
-      alert("The number of bread slices should be between 1 and 4!");
-      setSlices("");
-    }
-  };
 
   return (
     <>
@@ -17,16 +9,16 @@ const SandwichSpecifics = () => {
         Number of bread slices:
       </label>
       <input
-        required
-        onChange={(e) => checkValue(e.target.value)}
+        onChange={(e) => setSlices(e.target.value)}
         type="number"
-        name="noOfBreadSlices"
+        name="slices_of_bread"
         min="1"
         step="1"
         max="4"
         value={slices}
         placeholder="Number of bread slices"
       />
+      <p className="errorMsg">{errors.slices_of_bread}</p>
     </>
   );
 };

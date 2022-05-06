@@ -5,14 +5,13 @@ import PreperationTime from "./PreperationTime";
 
 const DISHES = ["pizza", "sandwich", "soup"];
 
-const DishType = ({ type, setType, value, setValue }) => {
+const DishType = ({ type, setType, value, setValue, errors }) => {
   return (
     <label htmlFor="type">
       <p className="type-title">Dish type:</p>
       <select
         id="type"
         name="type"
-        required
         value={type}
         onChange={(e) => {
           setType(e.target.value);
@@ -30,10 +29,11 @@ const DishType = ({ type, setType, value, setValue }) => {
           </option>
         ))}
       </select>
+      <p className="errorMsg">{errors.type}</p>
       <PreperationTime value={value} setValue={setValue} />
-      {type === "pizza" && <PizzaSpecifics />}
-      {type === "soup" && <SoupSpecifics />}
-      {type === "sandwich" && <SandwichSpecifics />}
+      {type === "pizza" && <PizzaSpecifics errors={errors} />}
+      {type === "soup" && <SoupSpecifics errors={errors} />}
+      {type === "sandwich" && <SandwichSpecifics errors={errors} />}
     </label>
   );
 };
